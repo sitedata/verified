@@ -39,15 +39,8 @@ class Module extends ContentContainerModule
         $maxNumber = $this->settings->get('maxNumber');
 
         if (empty($maxNumber)) {
-            return '3';
+            return [];
         }
-
-    /**
-     * @return bool
-     */
-    public function getSEnabled()
-    {
-        return (boolean)$this->settings->space()->get('senabled');
     }
 
     /**
@@ -65,7 +58,7 @@ class Module extends ContentContainerModule
      */
     public function getConfigUrl()
     {
-        return helpers\Url::to(['/verified/admin/index']);
+        return helpers\Url::ROUTE_ADMIN;
     }
 
     /**
