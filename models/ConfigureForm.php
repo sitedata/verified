@@ -12,7 +12,7 @@ use humhub\components\behaviors\PolymorphicRelation;
  * This is the model class for table "verified".
  * 
  */
-class MessageBoards extends ActiveRecord
+class ConfigureForm extends ActiveRecord
 {
     /**
      * @inheritdoc
