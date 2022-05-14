@@ -1,0 +1,21 @@
+{
+    "id": "verified",
+    "version": "1.0.0-beta.1",
+    "name": "Verified",
+    "description": "Verified Accounts.",
+    "humhub": {
+        "minVersion": "1.10"
+    },
+    "keywords": ["verification", "tick"],
+    "screenshots": ["resources/Screenshot_1.png", "resources/Screenshot_2.png"],
+    "homepage": "https://github.com/GreenMeteor/verified",
+    "issues": "https://github.com/GreenMeteor/verified/issues",
+    "authors": [
+        {
+            "name": "Green Meteor",
+            "email": "hello@greenmeteor.net",
+            "homepage": "https://greenmeteor.net",
+            "role": "Owner"
+        }
+    ]	
+}
