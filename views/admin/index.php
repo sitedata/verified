@@ -2,7 +2,6 @@
 
 use kartik\widgets\ColorInput;
 use humhub\modules\ui\form\widgets\IconPicker;
-use humhub\modules\verified\helpers\Url;
 use humhub\modules\user\widgets\UserPickerField;
 use humhub\modules\ui\form\widgets\ActiveForm;
 use humhub\libs\Html;
