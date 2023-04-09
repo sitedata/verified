@@ -14,6 +14,8 @@ use humhub\components\behaviors\PolymorphicRelation;
  */
 class ConfigureForm extends ActiveRecord
 {
+    const REGEX_COLOR = '/(#([0-9a-f]{3}){1,2}|(rgba|hsla)\(\d{1,3}%?(,\s?\d{1,3}%?){2},\s?(1|0?\.\d+)\)|(rgb|hsl)\(\d{1,3}%?(,\s?\d{1,3}%?\)){2})/';
+
     /**
      * @inheritdoc
      */
@@ -23,6 +25,16 @@ class ConfigureForm extends ActiveRecord
      * @inheritdoc
      */
     public $maxNumber;
+
+    /**
+     * @inheritdoc
+     */
+    public $icon;
+
+    /**
+     * @inheritdoc
+     */
+    public $color;
 
     /**
      * @inheritdoc
@@ -39,7 +51,9 @@ class ConfigureForm extends ActiveRecord
     {
         return [
             [['maxNumber'], 'integer'],
-            [['verifyUser'], 'safe'],
+            [['verifyUser', 'icon'], 'safe'],
+            ['color', 'string'],
+            ['color', 'validateColor'],
         ];
     }
 
@@ -54,6 +68,23 @@ class ConfigureForm extends ActiveRecord
                 'mustBeInstanceOf' => [ActiveRecord::class]
             ]
         ];
+    }
+
+    /**
+     * Validate the used color
+     */
+    public function validateColor()
+    {
+        if(empty($this->color)) {
+            return;
+        }
+
+        preg_match_all(static::REGEX_COLOR, $this->color, $matches, PREG_SET_ORDER);
+        if(!isset($matches[0][0])) {
+            $this->addError('color', Yii::t('VerifiedModule.base', 'Invalid color!'));
+        } else {
+            $this->color = $matches[0][0];
+        }
     }
 
     /**
@@ -73,6 +104,8 @@ class ConfigureForm extends ActiveRecord
     {
         return [
             'verifyUser' => Yii::t('VerifiedModule.base', 'Verify Selected User(s):'),
+            'icon' => Yii::t('VerifiedModule.base', 'Custom Icon used:'),
+            'color' => Yii::t('VerifiedModule.base', 'Custom Icon color:'),
             'maxNumber' => Yii::t('VerifiedModule.base', 'Maximum number of verified allowed:'),
         ];
     }
@@ -83,8 +116,10 @@ class ConfigureForm extends ActiveRecord
         $module = Yii::$app->getModule('verified');
         $settings = $module->settings;
 
+        $this->icon = $settings->get('icon');
         $this->maxNumber = $settings->get('maxNumber');
         $this->verifyUser = (array)$settings->getSerialized('verifyUser');
+        $this->color = $settings->get('color', Yii::$app->getView()->theme->variable('default'));
 
         return true;
     }
@@ -95,8 +130,14 @@ class ConfigureForm extends ActiveRecord
         $module = Yii::$app->getModule('verified');
         $settings = $module->settings;
 
-            $settings->set('maxNumber', $this->maxNumber);
-            $settings->setSerialized('verifyUser', (array)$this->verifyUser);
+        if(empty($this->color)) {
+            $this->color = Yii::$app->getView()->theme->variable('default');
+        }
+
+        $settings->set('icon', $this->icon);
+        $settings->set('color', $this->color);
+        $settings->set('maxNumber', $this->maxNumber);
+        $settings->setSerialized('verifyUser', (array)$this->verifyUser);
 
         return true;
     }
