@@ -20,7 +20,7 @@ use humhub\libs\Html;
             </div>
 
             <div class="form-group">
-                <?= Html::submitButton(\Yii::t('DiscussionsModule.base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']); ?>
+                <?= Html::submitButton(\Yii::t('VerifiedModule.base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']); ?>
                 <a class="btn btn-primary" href="<?= Url::getHelpUrl(); ?>" role="button">Help</a>
             </div>
             
