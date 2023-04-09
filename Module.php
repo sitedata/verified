@@ -43,9 +43,13 @@ class Module extends ContentContainerModule
             return [];
         }
     }
-	
-	public function getIcon() {
-		return Icon::get('check-circle', ['htmlOptions' => ['class' => 'verified']])->tooltip(Yii::t('VerifiedModule.base', 'Verified Account'));
+
+	public function getIcon()
+	{
+	    $icon = $this->settings->get('icon');
+	    $color = $this->settings->get('color');
+
+		return Icon::get($icon, ['color' => $color, 'tooltip' => Yii::t('VerifiedModule.base', 'Verified Account')]);
     }
 
     /**
