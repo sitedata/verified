@@ -55,16 +55,6 @@ class Module extends ContentContainerModule
     /**
      * @inheritdoc
      */
-    public function getNotifications()
-    {
-        return [
-            notifications\Verified::class
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getConfigUrl()
     {
         return helpers\Url::ROUTE_ADMIN;
