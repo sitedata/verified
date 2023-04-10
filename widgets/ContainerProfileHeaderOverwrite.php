@@ -23,7 +23,7 @@ class ContainerProfileHeaderOverwrite extends ContainerProfileHeader
 		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon();
 		}
 
-                if (in_array($this->container->guid, $verifiedSpace)) {
+		if (in_array($this->container->guid, $verifiedSpace)) {
 		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon();
 		}
 	}
