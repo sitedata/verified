@@ -3,7 +3,6 @@
 Verify your HumHub users with a verified tick on their profiles.
 
 ### To-Does
-- Space Implementation
 - Notify user if account is verified
 
 ### Credits
