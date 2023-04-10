@@ -4,7 +4,7 @@
     "name": "Verified",
     "description": "Verified Accounts.",
     "humhub": {
-        "minVersion": "1.10"
+        "minVersion": "1.12"
     },
     "keywords": ["verification", "tick"],
     "screenshots": ["resources/Screenshot_1.png", "resources/Screenshot_2.png"],
@@ -17,5 +17,5 @@
             "homepage": "https://greenmeteor.net",
             "role": "Owner"
         }
-    ]	
+    ]
 }
