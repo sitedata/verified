@@ -18,13 +18,14 @@ class ContainerProfileHeaderOverwrite extends ContainerProfileHeader
 	    parent::init();
 		
 		$verifiedUser = Yii::$app->getModule('verified')->getVerifyUser();
+		$verifiedSpace = Yii::$app->getModule('verified')->getVerifySpace();
 		
 		if (in_array($this->container->guid, $verifiedUser)) {
-		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon();
+		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon('user');
 		}
 
 		if (in_array($this->container->guid, $verifiedSpace)) {
-		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon();
+		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon('space');
 		}
 	}
 	

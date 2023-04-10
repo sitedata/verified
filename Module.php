@@ -34,6 +34,17 @@ class Module extends ContentContainerModule
 
         return $verifyUser;
     }
+	
+    public function getVerifySpace()
+    {
+        $verifySpace = $this->settings->getSerialized('verifySpace');
+
+        if (empty($verifySpace)) {
+            return [];
+        }
+
+        return $verifySpace;
+    }
 
     public function getMaxNumber()
     {
@@ -44,12 +55,17 @@ class Module extends ContentContainerModule
         }
     }
 
-	public function getIcon()
+	public function getIcon($type = 'user')
 	{
 	    $icon = $this->settings->get('icon');
 	    $color = $this->settings->get('color');
 
-		return Icon::get($icon, ['color' => $color, 'tooltip' => Yii::t('VerifiedModule.base', 'Verified Account')]);
+		if ($type = 'user') {
+			$tooltip_message = Yii::t('VerifiedModule.base', 'Verified User');
+		} elseif ($type = 'class') {
+			$tooltip_message = Yii::t('VerifiedModule.base', 'Verified Space');
+		}
+		return Icon::get($icon, ['color' => $color, 'tooltip' => $tooltip_message]);
     }
 
     /**
