@@ -24,6 +24,11 @@ class ConfigureForm extends ActiveRecord
     /**
      * @inheritdoc
      */
+    public $verifySpace;
+
+    /**
+     * @inheritdoc
+     */
     public $maxNumber;
 
     /**
@@ -51,7 +56,7 @@ class ConfigureForm extends ActiveRecord
     {
         return [
             [['maxNumber'], 'integer'],
-            [['verifyUser', 'icon'], 'safe'],
+            [['verifyUser', 'verifySpace', 'icon'], 'safe'],
             ['color', 'string'],
             ['color', 'validateColor'],
         ];
@@ -104,6 +109,7 @@ class ConfigureForm extends ActiveRecord
     {
         return [
             'verifyUser' => Yii::t('VerifiedModule.base', 'Verify Selected User(s):'),
+            'verifySpace' => Yii::t('VerifiedModule.base', 'Verify Selected Space(s):'),
             'icon' => Yii::t('VerifiedModule.base', 'Custom Icon used:'),
             'color' => Yii::t('VerifiedModule.base', 'Custom Icon color:'),
             'maxNumber' => Yii::t('VerifiedModule.base', 'Maximum number of verified allowed:'),
@@ -119,6 +125,7 @@ class ConfigureForm extends ActiveRecord
         $this->icon = $settings->get('icon');
         $this->maxNumber = $settings->get('maxNumber');
         $this->verifyUser = (array)$settings->getSerialized('verifyUser');
+        $this->verifySpace = (array)$settings->getSerialized('verifySpace');
         $this->color = $settings->get('color', Yii::$app->getView()->theme->variable('default'));
 
         return true;
@@ -138,6 +145,7 @@ class ConfigureForm extends ActiveRecord
         $settings->set('color', $this->color);
         $settings->set('maxNumber', $this->maxNumber);
         $settings->setSerialized('verifyUser', (array)$this->verifyUser);
+        $settings->setSerialized('verifySpace', (array)$this->verifySpace);
 
         return true;
     }
