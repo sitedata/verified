@@ -5,6 +5,7 @@ namespace humhub\modules\verified;
 use Yii;
 use humhub\modules\content\components\ContentContainerModule;
 use humhub\modules\user\models\User;
+use humhub\modules\ui\icon\widgets\Icon;
 
 class Module extends ContentContainerModule
 {
@@ -43,14 +44,12 @@ class Module extends ContentContainerModule
         }
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getNotifications()
-    {
-        return [
-            notifications\Verified::class
-        ];
+	public function getIcon()
+	{
+	    $icon = $this->settings->get('icon');
+	    $color = $this->settings->get('color');
+
+		return Icon::get($icon, ['color' => $color, 'tooltip' => Yii::t('VerifiedModule.base', 'Verified Account')]);
     }
 
     /**
