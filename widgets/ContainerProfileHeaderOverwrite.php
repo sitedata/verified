@@ -21,11 +21,11 @@ class ContainerProfileHeaderOverwrite extends ContainerProfileHeader
 		$verifiedSpace = Yii::$app->getModule('verified')->getVerifySpace();
 		
 		if (in_array($this->container->guid, $verifiedUser)) {
-		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon('user');
+		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getUserIcon();
 		}
 
 		if (in_array($this->container->guid, $verifiedSpace)) {
-		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getIcon('space');
+		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getSpaceIcon();
 		}
 	}
 	
