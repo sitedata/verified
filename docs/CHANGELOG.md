@@ -1,6 +1,9 @@
 Changelog
 =========
-### 1.0.0-beta.2 (TBA)
+### 1.0.0-beta.3 (TBA)
+- Enh: People and spaces page
+
+### 1.0.0-beta.2 (4/16/2023)
 - Enh: Space configurations
 - Enh: Implement space settings
 - Enh: Space Verification Tick

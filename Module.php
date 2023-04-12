@@ -55,24 +55,24 @@ class Module extends ContentContainerModule
         }
     }
 
-	public function getUserIcon()
-	{
-	    $icon = $this->settings->get('icon');
-	    $color = $this->settings->get('color');
+    public function getUserIcon()
+    {
+        $icon = $this->settings->get('icon');
+        $color = $this->settings->get('color');
 
-		$tooltip_message = Yii::t('VerifiedModule.base', 'Verified User');
+		    $tooltip_message = Yii::t('VerifiedModule.base', 'Verified User');
 		
-		return Icon::get($icon, ['color' => $color, 'tooltip' => $tooltip_message]);
+		    return Icon::get($icon, ['color' => $color, 'tooltip' => $tooltip_message]);
     }
 	
-	public function getSpaceIcon()
-	{
-	    $icon = $this->settings->get('icon');
-	    $color = $this->settings->get('color');
+    public function getSpaceIcon()
+    {
+        $icon = $this->settings->get('icon');
+        $color = $this->settings->get('color');
 
-		$tooltip_message = Yii::t('VerifiedModule.base', 'Verified Space');
-		
-		return Icon::get($icon, ['color' => $color, 'tooltip' => $tooltip_message]);
+		    $tooltip_message = Yii::t('VerifiedModule.base', 'Verified Space');
+
+		    return Icon::get($icon, ['color' => $color, 'tooltip' => $tooltip_message]);
     }
 
     /**
