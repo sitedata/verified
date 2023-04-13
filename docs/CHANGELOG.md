@@ -2,6 +2,7 @@ Changelog
 =========
 ### 1.0.0-beta.3 (TBA)
 - Enh: People and spaces page
+- Enh: Fix width of configuration form
 
 ### 1.0.0-beta.2 (4/16/2023)
 - Enh: Space configurations
