@@ -122,7 +122,7 @@ class ConfigureForm extends ActiveRecord
         $module = Yii::$app->getModule('verified');
         $settings = $module->settings;
 
-        $this->icon = $settings->get('icon');
+        $this->icon = $settings->get('icon', 'check-circle');
         $this->maxNumber = $settings->get('maxNumber');
         $this->verifyUser = (array)$settings->getSerialized('verifyUser');
         $this->verifySpace = (array)$settings->getSerialized('verifySpace');
