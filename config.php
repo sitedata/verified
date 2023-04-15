@@ -5,6 +5,7 @@ use humhub\modules\verified\Events;
 use humhub\modules\content\widgets\ContainerProfileHeader;
 use humhub\modules\user\widgets\PeopleCard;
 use humhub\modules\space\widgets\SpaceDirectoryCard;
+use humhub\modules\content\widgets\stream\WallStreamEntryWidget
 
 return [
     'id' => 'verified',
@@ -26,5 +27,10 @@ return [
 			'event' => SpaceDirectoryCard::EVENT_CREATE,
 			'callback' => [Events::class, 'onSpaceDirectoryCardBeforeRun']
 		],
+        [
+			'class' => WallStreamEntryWidget::class,
+			'event' => WallStreamEntryWidget::EVENT_CREATE,
+			'callback' => [Events::class, 'onWallStreamEntryWidgetBeforeRun']
+		]
     ],
 ];

@@ -22,4 +22,8 @@ class Events
 	{
 		    $event->config['class'] = SpaceDirectoryCardOverwrite::class;
 	}
+	public static function onWallStreamEntryWidgetBeforeRun(WidgetCreateEvent $event)
+	{
+		$event->config['layoutHeader'] = '@verified/widgets/views/wallStreamEntryHeader';
+	}
 }
