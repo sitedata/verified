@@ -35,9 +35,9 @@ if (in_array($model->content->createdBy->guid, $verifiedUser)) {
     $verifiedIcon_user = ' ' . Yii::$app->getModule('verified')->getUserIcon();
 }
 
-$verifiedIcon_userInTitle = '';
-if (!$renderOptions->isShowAuthorInformationInSubHeadLine($model)) {
-	$verifiedIcon_userInTitle = $verifiedIcon_user;
+// Add mark to title if title is author's name
+if ($title == Html::containerLink($model->content->createdBy)) {
+	$title .= $verifiedIcon_user;
 }
 
 $verifiedIcon_container = '';
@@ -76,7 +76,7 @@ if (in_array($model->content->container->guid, $verifiedSpace)) {
 <div class="wall-entry-header-info media-body">
 
     <div class="media-heading">
-        <?= $title . $verifiedIcon_userInTitle ?>
+        <?= $title ?>
 
         <?php if ($renderOptions->isShowContainerInformationInTitle($model)) : ?>
             <span class="viaLink">
