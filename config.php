@@ -5,7 +5,7 @@ use humhub\modules\verified\Events;
 use humhub\modules\content\widgets\ContainerProfileHeader;
 use humhub\modules\user\widgets\PeopleCard;
 use humhub\modules\space\widgets\SpaceDirectoryCard;
-use humhub\modules\content\widgets\stream\WallStreamEntryWidget
+use humhub\modules\content\widgets\stream\WallStreamEntryWidget;
 
 return [
     'id' => 'verified',
