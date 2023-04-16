@@ -4,6 +4,7 @@ Changelog
 - Enh: People and spaces page
 - Enh: Fix width of configuration form
 - Enh: Add default icon
+- Enh: Stream entries (e.g. posts)
 
 ### 1.0.0-beta.2 (4/16/2023)
 - Enh: Space configurations
