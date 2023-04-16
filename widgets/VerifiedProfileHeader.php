@@ -9,7 +9,7 @@ use humhub\modules\user\models\User;
 
 use Yii;
 
-class ContainerProfileHeaderOverwrite extends ContainerProfileHeader
+class VerifiedProfileHeader extends ContainerProfileHeader
 {	
 	public $verifiedIcon;
 	

@@ -2,9 +2,9 @@
 
 namespace humhub\modules\verified;
 
-use humhub\modules\verified\widgets\ContainerProfileHeaderOverwrite;
-use humhub\modules\verified\widgets\PeopleCardOverwrite;
-use humhub\modules\verified\widgets\SpaceDirectoryCardOverwrite;
+use humhub\modules\verified\widgets\VerifiedProfileHeader;
+use humhub\modules\verified\widgets\VerifiedPeopleCard;
+use humhub\modules\verified\widgets\VerifiedSpaceCard;
 
 use humhub\libs\WidgetCreateEvent;
 
@@ -12,15 +12,15 @@ class Events
 {
 	public static function onContainerProfileHeaderBeforeRun(WidgetCreateEvent $event)
 	{
-		    $event->config['class'] = ContainerProfileHeaderOverwrite::class;
+		    $event->config['class'] = VerifiedProfileHeader::class;
 	}
 	public static function onPeopleCardBeforeRun(WidgetCreateEvent $event)
 	{
-		    $event->config['class'] = PeopleCardOverwrite::class;
+		    $event->config['class'] = VerifiedPeopleCard::class;
 	}
 	public static function onSpaceDirectoryCardBeforeRun(WidgetCreateEvent $event)
 	{
-		    $event->config['class'] = SpaceDirectoryCardOverwrite::class;
+		    $event->config['class'] = VerifiedSpaceCard::class;
 	}
 	public static function onWallStreamEntryWidgetBeforeRun(WidgetCreateEvent $event)
 	{

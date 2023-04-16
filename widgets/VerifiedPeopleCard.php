@@ -2,28 +2,28 @@
 
 namespace humhub\modules\verified\widgets;
 
-use humhub\modules\space\widgets\SpaceDirectoryCard;
+use humhub\modules\user\widgets\PeopleCard;
 use Yii;
 
-class SpaceDirectoryCardOverwrite extends SpaceDirectoryCard
-{
+class VerifiedPeopleCard extends PeopleCard
+{	
     public $verifiedIcon;
 	
     public function init()
 	{
 	    parent::init();
 		
-		$verifiedSpace = Yii::$app->getModule('verified')->getVerifySpace();
+		$verifiedUser = Yii::$app->getModule('verified')->getVerifyUser();
 		
-		if (in_array($this->space->guid, $verifiedSpace)) {
-		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getSpaceIcon();
+		if (in_array($this->user->guid, $verifiedUser)) {
+		    $this->verifiedIcon = ' ' . Yii::$app->getModule('verified')->getUserIcon();
 		}
     }
 	
     public function run()
     {
-        $card = $this->render('spaceDirectoryCard', [
-            'space' => $this->space,
+        $card = $this->render('peopleCard', [
+            'user' => $this->user,
             'verifiedIcon' => $this->verifiedIcon
         ]);
 
