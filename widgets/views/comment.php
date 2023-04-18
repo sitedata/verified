@@ -1,5 +1,7 @@
 <?php
 
+use humhub\modules\verified\widgets\VerifiedIcon;
+
 use humhub\libs\Html;
 use humhub\modules\comment\Module;
 use humhub\modules\comment\widgets\CommentControls;
@@ -38,7 +40,7 @@ $module = Yii::$app->getModule('comment');
     <div>
         <div class="media-body">
             <h4 class="media-heading">
-                <?= Html::containerLink($user) . $verifiedIcon ?>
+                <?= Html::containerLink($user) . VerifiedIcon::widget(['container' => $user]) ?>
                 <small>&middot <?= TimeAgo::widget(['timestamp' => $createdAt]) ?>
                     <?php if ($comment->isUpdated()): ?>
                         &middot <?= UpdatedIcon::getByDated($comment->updated_at) ?>

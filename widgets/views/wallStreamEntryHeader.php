@@ -1,5 +1,7 @@
 <?php
 
+use humhub\modules\verified\widgets\VerifiedIcon;
+
 use humhub\libs\Html;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\models\Content;
@@ -27,24 +29,9 @@ $container = $model->content->container;
 
 // verified module logic begin
 
-$verifiedUser = Yii::$app->getModule('verified')->getVerifyUser();
-$verifiedSpace = Yii::$app->getModule('verified')->getVerifySpace();
-
-$verifiedIcon_user = '';
-if (in_array($model->content->createdBy->guid, $verifiedUser)) {
-    $verifiedIcon_user = ' ' . Yii::$app->getModule('verified')->getUserIcon();
-}
-
 // Add mark to title if title is author's name
 if ($title == Html::containerLink($model->content->createdBy)) {
-	$title .= $verifiedIcon_user;
-}
-
-$verifiedIcon_container = '';
-if (in_array($model->content->container->guid, $verifiedSpace)) {
-	$verifiedIcon_container = ' ' . Yii::$app->getModule('verified')->getSpaceIcon();
-} elseif (in_array($model->content->container->guid, $verifiedUser)) {
-	$verifiedIcon_container = ' ' . Yii::$app->getModule('verified')->getUserIcon();
+	$title .= VerifiedIcon::widget(['container' => $model->content->createdBy]);
 }
 
 // verified module logic end
@@ -81,21 +68,21 @@ if (in_array($model->content->container->guid, $verifiedSpace)) {
         <?php if ($renderOptions->isShowContainerInformationInTitle($model)) : ?>
             <span class="viaLink">
                 <?= Icon::get('caret-right') ?>
-                <?= Html::containerLink($model->content->container) . $verifiedIcon_container ?>
+                <?= Html::containerLink($model->content->container) . VerifiedIcon::widget(['container' => $model->content->container]) ?>
             </span>
         <?php endif; ?>
     </div>
 
     <div class="media-subheading">
         <?php if ($renderOptions->isShowAuthorInformationInSubHeadLine($model)) : ?>
-            <?= Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']) . $verifiedIcon_user ?>
+            <?= Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']) . VerifiedIcon::widget(['container' => $model->content->createdBy]) ?>
         <?php endif ?>
         <?php if ($renderOptions->isShowContainerInformationInSubTitle($model)) : ?>
             <?php if ($renderOptions->isShowAuthorInformationInSubHeadLine($model)) : ?>
                 <?= Icon::get('caret-right') ?>
-                <?= Html::containerLink($model->content->container, ['class' => 'wall-entry-container-link']) . $verifiedIcon_container ?>
+                <?= Html::containerLink($model->content->container, ['class' => 'wall-entry-container-link']) . VerifiedIcon::widget(['container' => $model->content->container]) ?>
             <?php elseif ($model->content->container instanceof Space) : ?>
-                <?= Html::containerLink($model->content->container, ['class' => 'wall-entry-container-link']) . $verifiedIcon_container ?>
+                <?= Html::containerLink($model->content->container, ['class' => 'wall-entry-container-link']) . VerifiedIcon::widget(['container' => $model->content->container]) ?>
             <?php endif; ?>
         <?php endif; ?>
 

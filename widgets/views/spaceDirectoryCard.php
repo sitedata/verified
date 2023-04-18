@@ -5,6 +5,8 @@
  * @license https://www.humhub.com/licences
  */
 
+use humhub\modules\verified\widgets\VerifiedIcon;
+
 use humhub\libs\Html;
 use humhub\modules\space\models\Space;
 use humhub\modules\space\widgets\Image;
@@ -33,7 +35,7 @@ use yii\web\View;
         </div>
     </div>
     <div class="card-body">
-        <strong class="card-title"><?= Html::containerLink($space) . $verifiedIcon; ?></strong>
+        <strong class="card-title"><?= Html::containerLink($space) . VerifiedIcon::widget(['container' => $space]); ?></strong>
         <?php if (trim($space->description) !== '') : ?>
             <div class="card-details"><?= Html::encode($space->description); ?></div>
         <?php endif; ?>
