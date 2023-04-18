@@ -7,6 +7,7 @@ Changelog
 - Enh: Stream entries (e.g. posts)
 - Enh: Improve class names
 - Fix: Enabling from profile
+- Enh: Comments
 
 ### 1.0.0-beta.2 (4/16/2023)
 - Enh: Space configurations

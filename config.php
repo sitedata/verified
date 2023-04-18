@@ -6,6 +6,7 @@ use humhub\modules\content\widgets\ContainerProfileHeader;
 use humhub\modules\user\widgets\PeopleCard;
 use humhub\modules\space\widgets\SpaceDirectoryCard;
 use humhub\modules\content\widgets\stream\WallStreamEntryWidget;
+use humhub\modules\comment\widgets\Comment;
 
 return [
     'id' => 'verified',
@@ -31,6 +32,11 @@ return [
 			'class' => WallStreamEntryWidget::class,
 			'event' => WallStreamEntryWidget::EVENT_CREATE,
 			'callback' => [Events::class, 'onWallStreamEntryWidgetBeforeRun']
+        ],
+        [
+			'class' => Comment::class,
+			'event' => Comment::EVENT_CREATE,
+			'callback' => [Events::class, 'onCommentBeforeRun']
 		]
     ],
 ];
