@@ -9,6 +9,7 @@ Changelog
 - Fix: Enabling from profile
 - Enh: Comments
 - Enh: new VerifiedIcon widget
+- Enh: Add Translation files
 
 ### 1.0.0-beta.2 (4/16/2023)
 - Enh: Space configurations
