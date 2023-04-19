@@ -26,18 +26,18 @@ class VerifiedIcon extends Widget
         
         $verifiedUser = Yii::$app->getModule('verified')->getVerifyUser();
         $verifiedSpace = Yii::$app->getModule('verified')->getVerifySpace();
-		
-        if ($this->leadingSpace) {
-            $this->verifiedIcon = ' ';
-        }
         
         if (in_array($this->container->guid, $verifiedUser))
         {
-            $this->verifiedIcon .= Yii::$app->getModule('verified')->getUserIcon();
+            $this->verifiedIcon = Yii::$app->getModule('verified')->getUserIcon();
             
         } elseif (in_array($this->container->guid, $verifiedSpace))
         {
-            $this->verifiedIcon .= Yii::$app->getModule('verified')->getSpaceIcon();
+            $this->verifiedIcon = Yii::$app->getModule('verified')->getSpaceIcon();
+        }
+        
+        if ($this->leadingSpace && !empty($this->verifiedIcon)) {
+            $this->verifiedIcon = ' ' . $this->verifiedIcon;
         }
     }
     
