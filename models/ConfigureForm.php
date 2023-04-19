@@ -126,7 +126,7 @@ class ConfigureForm extends ActiveRecord
         $this->maxNumber = $settings->get('maxNumber');
         $this->verifyUser = (array)$settings->getSerialized('verifyUser');
         $this->verifySpace = (array)$settings->getSerialized('verifySpace');
-        $this->color = $settings->get('color', Yii::$app->getView()->theme->variable('default'));
+        $this->color = $settings->get('color', Yii::$app->getView()->theme->variable('primary'));
 
         return true;
     }
