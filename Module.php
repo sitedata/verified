@@ -3,26 +3,14 @@
 namespace humhub\modules\verified;
 
 use Yii;
-use humhub\modules\content\components\ContentContainerModule;
-use humhub\modules\user\models\User;
 use humhub\modules\ui\icon\widgets\Icon;
 
-class Module extends ContentContainerModule
+class Module extends \humhub\components\Module
 {
     /**
      * @inheritdoc
      */
     public $resourcesPath = 'resources';
-
-    /**
-    * @inheritdoc
-    */
-    public function getContentContainerTypes()
-    {
-        return [
-            User::class,
-        ];
-    }
 
     public function getVerifyUser()
     {

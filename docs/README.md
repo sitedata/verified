@@ -9,3 +9,4 @@ Verify your HumHub users with a verified tick on their profiles.
 [Green Meteor](https://github.com/GreenMeteor)
 
 [Felix Hahn](https://github.com/felixhahnweilheim)
+

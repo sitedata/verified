@@ -23,6 +23,8 @@
  * Note: Inline styles have been retained for legacy theme compatibility (prior to v1.4)
  */
 
+use humhub\modules\verified\widgets\VerifiedIcon;
+
 use humhub\modules\content\assets\ContainerHeaderAsset;
 use humhub\modules\file\widgets\Upload;
 use yii\helpers\Html;
@@ -49,7 +51,7 @@ $profileImageHeight = $container->getProfileImage()->height() - 10;
 
         <!-- show user name and title -->
         <div class="img-profile-data">
-            <h1 class="<?= $classPrefix ?>"><?= Html::encode($title) . $verifiedIcon ?></h1>
+            <h1 class="<?= $classPrefix ?>"><?= Html::encode($title) . VerifiedIcon::widget(['container' => $container]); ?></h1>
             <h2 class="<?= $classPrefix ?>"><?= Html::encode($subTitle) ?></h2>
         </div>
 

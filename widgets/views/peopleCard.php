@@ -5,6 +5,8 @@
  * @license https://www.humhub.com/licences
  */
 
+use humhub\modules\verified\widgets\VerifiedIcon;
+
 use humhub\libs\Html;
 use humhub\modules\user\models\User;
 use humhub\modules\user\widgets\PeopleActionButtons;
@@ -30,7 +32,7 @@ use yii\web\View;
         ]); ?>
     </div>
     <div class="card-body">
-        <strong class="card-title"><?= Html::containerLink($user) . $verifiedIcon; ?></strong>
+        <strong class="card-title"><?= Html::containerLink($user) . VerifiedIcon::widget(['container' => $user]); ?></strong>
         <?php if (!empty($user->displayNameSub)) : ?>
             <div><?= Html::encode($user->displayNameSub); ?></div>
         <?php endif; ?>
