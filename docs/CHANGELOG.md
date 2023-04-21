@@ -4,7 +4,7 @@ Changelog
 - Enh: Fix maximum number of allowed accounts
 - Enh: Use maximum number also for space selection
 
-### 1.0.0-beta.3 (4/21/2023)
+### 1.0.0-beta.3 (4/20/2023)
 - Enh: People and spaces page
 - Enh: Fix width of configuration form
 - Enh: Add default icon
