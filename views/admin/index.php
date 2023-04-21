@@ -18,11 +18,11 @@ use humhub\libs\Html;
         <?php $form = ActiveForm::begin(['id' => 'configure-form']); ?>
         <div class="form-group">
             <?= $form->field($model, 'verifyUser')->widget(UserPickerField::class, ['id' => 'user_id', 'maxSelection' => \Yii::$app->getModule('verified')->getMaxUsers()]); ?>
+            <?= $form->field($model, 'maxNumber'); ?>
             <?= $form->field($model, 'verifySpace')->widget(SpacePickerField::class, ['id' => 'space_id', 'maxSelection' => \Yii::$app->getModule('verified')->getMaxSpaces()]); ?>
+            <?= $form->field($model, 'maxSpaces'); ?>
             <?= $form->field($model, 'icon')->widget(IconPicker::class); ?>
             <?= $form->field($model, 'color')->widget(ColorInput::class); ?>
-            <?= $form->field($model, 'maxNumber'); ?>
-            <?= $form->field($model, 'maxSpaces'); ?>
         </div>
 
         <div class="form-group">
