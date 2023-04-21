@@ -36,7 +36,11 @@ class Module extends \humhub\components\Module
 
     public function getMaxNumber()
     {
-		return $this->settings->get('maxNumber');
+        $maxNumber = $this->settings->get('maxNumber');
+        
+        if (empty($maxNumber)) {
+            return '25';
+        }
     }
 
     public function getUserIcon()
