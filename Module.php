@@ -34,9 +34,20 @@ class Module extends \humhub\components\Module
         return $verifySpace;
     }
 
-    public function getMaxNumber()
+    public function getMaxUsers()
     {
         $maxNumber = $this->settings->get('maxNumber');
+        
+        if (empty($maxNumber)) {
+            $maxNumber = '25';
+        }
+        
+        return $maxNumber;
+    }
+    
+    public function getMaxSpaces()
+    {
+        $maxNumber = $this->settings->get('maxSpaces');
         
         if (empty($maxNumber)) {
             $maxNumber = '25';

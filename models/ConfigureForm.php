@@ -30,6 +30,10 @@ class ConfigureForm extends ActiveRecord
      * @inheritdoc
      */
     public $maxNumber;
+    /**
+     * @inheritdoc
+     */
+    public $maxSpaces;
 
     /**
      * @inheritdoc
@@ -55,7 +59,7 @@ class ConfigureForm extends ActiveRecord
     public function rules()
     {
         return [
-            [['maxNumber'], 'integer'],
+            [['maxNumber', 'maxSpaces'], 'integer'],
             [['verifyUser', 'verifySpace', 'icon'], 'safe'],
             ['color', 'string'],
             ['color', 'validateColor'],
@@ -112,7 +116,8 @@ class ConfigureForm extends ActiveRecord
             'verifySpace' => Yii::t('VerifiedModule.base', 'Verify Selected Space(s):'),
             'icon' => Yii::t('VerifiedModule.base', 'Custom Icon used:'),
             'color' => Yii::t('VerifiedModule.base', 'Custom Icon color:'),
-            'maxNumber' => Yii::t('VerifiedModule.base', 'Maximum number of verified allowed:'),
+            'maxNumber' => Yii::t('VerifiedModule.base', 'Maximum number of verified users allowed:'),
+            'maxSpaces' => Yii::t('VerifiedModule.base', 'Maximum number of verified spaces allowed:'),
         ];
     }
 
@@ -124,6 +129,7 @@ class ConfigureForm extends ActiveRecord
 
         $this->icon = $settings->get('icon', 'check-circle');
         $this->maxNumber = $settings->get('maxNumber');
+        $this->maxSpaces = $settings->get('maxSpaces');
         $this->verifyUser = (array)$settings->getSerialized('verifyUser');
         $this->verifySpace = (array)$settings->getSerialized('verifySpace');
         $this->color = $settings->get('color', Yii::$app->getView()->theme->variable('primary'));
@@ -144,6 +150,7 @@ class ConfigureForm extends ActiveRecord
         $settings->set('icon', $this->icon);
         $settings->set('color', $this->color);
         $settings->set('maxNumber', $this->maxNumber);
+        $settings->set('maxSpaces', $this->maxSpaces);
         $settings->setSerialized('verifyUser', (array)$this->verifyUser);
         $settings->setSerialized('verifySpace', (array)$this->verifySpace);
 
@@ -160,5 +167,4 @@ class ConfigureForm extends ActiveRecord
 
         return $config;
     }
-
 }
