@@ -59,7 +59,7 @@ class ConfigureForm extends ActiveRecord
     public function rules()
     {
         return [
-            [['maxNumber', 'maxUsers'], 'integer'],
+            [['maxUsers', 'maxSpaces'], 'integer'],
             [['verifyUser', 'verifySpace', 'icon'], 'safe'],
             ['color', 'string'],
             ['color', 'validateColor'],
