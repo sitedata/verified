@@ -36,7 +36,7 @@ class Module extends \humhub\components\Module
 
     public function getMaxUsers()
     {
-        $maxNumber = $this->settings->get('maxNumber');
+        $maxNumber = $this->settings->get('maxUsers');
         
         if (empty($maxNumber)) {
             $maxNumber = '25';

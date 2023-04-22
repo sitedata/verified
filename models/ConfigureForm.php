@@ -29,7 +29,7 @@ class ConfigureForm extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public $maxNumber;
+    public $maxUsers;
     /**
      * @inheritdoc
      */
@@ -59,7 +59,7 @@ class ConfigureForm extends ActiveRecord
     public function rules()
     {
         return [
-            [['maxNumber', 'maxSpaces'], 'integer'],
+            [['maxNumber', 'maxUsers'], 'integer'],
             [['verifyUser', 'verifySpace', 'icon'], 'safe'],
             ['color', 'string'],
             ['color', 'validateColor'],
@@ -116,7 +116,7 @@ class ConfigureForm extends ActiveRecord
             'verifySpace' => Yii::t('VerifiedModule.base', 'Verify Selected Space(s):'),
             'icon' => Yii::t('VerifiedModule.base', 'Custom Icon used:'),
             'color' => Yii::t('VerifiedModule.base', 'Custom Icon color:'),
-            'maxNumber' => Yii::t('VerifiedModule.base', 'Maximum number of verified users allowed:'),
+            'maxUsers' => Yii::t('VerifiedModule.base', 'Maximum number of verified users allowed:'),
             'maxSpaces' => Yii::t('VerifiedModule.base', 'Maximum number of verified spaces allowed:'),
         ];
     }
@@ -128,7 +128,7 @@ class ConfigureForm extends ActiveRecord
         $settings = $module->settings;
 
         $this->icon = $settings->get('icon', 'check-circle');
-        $this->maxNumber = $settings->get('maxNumber');
+        $this->maxUsers = $settings->get('maxUsers');
         $this->maxSpaces = $settings->get('maxSpaces');
         $this->verifyUser = (array)$settings->getSerialized('verifyUser');
         $this->verifySpace = (array)$settings->getSerialized('verifySpace');
@@ -149,7 +149,7 @@ class ConfigureForm extends ActiveRecord
 
         $settings->set('icon', $this->icon);
         $settings->set('color', $this->color);
-        $settings->set('maxNumber', $this->maxNumber);
+        $settings->set('maxUsers', $this->maxUsers);
         $settings->set('maxSpaces', $this->maxSpaces);
         $settings->setSerialized('verifyUser', (array)$this->verifyUser);
         $settings->setSerialized('verifySpace', (array)$this->verifySpace);
