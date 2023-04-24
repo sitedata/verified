@@ -13,36 +13,46 @@ use yii\base\Widget;
 
 class VerifiedIcon extends Widget
 {	
-    // user or space
+    /**
+     * @var \humhub\modules\user\models\User OR \humhub\modules\space\models\Space
+     */
     public $container;
     
-    // add a leading space
-    public $leadingSpace = true;
-    
+    /**
+     * @var string icon
+     */
     public $icon;
     
+    /**
+     * @var string color
+     */
     public $color;
-        
-    public $verified;
     
-    public $tooltip_message;
+    /**
+     * @var boolean adds a leading space
+     */
+    public $leadingSpace = true;
+    
+    protected $verified;
+    
+    protected $tooltip_message;
     
     public function init()
     {
         parent::init();
         
-        $verifiedUser = Yii::$app->getModule('verified')->getVerifyUser();
-        $verifiedSpace = Yii::$app->getModule('verified')->getVerifySpace();
+        $module = Yii::$app->getModule('verified');
         
-        if (in_array($this->container->guid, $verifiedUser))
+        if (in_array($this->container->guid, $module->getVerifyUser()))
         {
             $this->verified = true;
             $this->tooltip_message = Yii::t('VerifiedModule.base', 'Verified User');
             
-        } elseif (in_array($this->container->guid, $verifiedSpace))
+        } elseif (in_array($this->container->guid, $module->getVerifySpace()))
         {
             $this->verified = true;
             $this->tooltip_message = Yii::t('VerifiedModule.base', 'Verified Space');
+            
         } else {
             $this->verified = false;
         }
