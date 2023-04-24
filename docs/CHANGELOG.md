@@ -1,5 +1,8 @@
 Changelog
 =========
+### (TBA)
+- Fix: Profile Image upload/edit
+
 ### 1.0.0-beta.3 (4/20/2023)
 - Enh: People and spaces page
 - Enh: Fix width of configuration form

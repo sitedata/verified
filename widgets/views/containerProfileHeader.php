@@ -15,7 +15,6 @@
 /* @var $headerControlView string */
 /* @var $coverUploadName string */
 /* @var $imageUploadName string */
-/* @var $verifiedIcon string */
 
 /* @var $container \humhub\modules\content\components\ContentContainerActiveRecord */
 
@@ -51,7 +50,7 @@ $profileImageHeight = $container->getProfileImage()->height() - 10;
 
         <!-- show user name and title -->
         <div class="img-profile-data">
-            <h1 class="<?= $classPrefix ?>"><?= Html::encode($title) . VerifiedIcon::widget(['container' => $container]); ?></h1>
+            <h1 class="<?= $classPrefix ?>"><?= Html::encode($title) . VerifiedIcon::widget(['container' => $container]) ?></h1>
             <h2 class="<?= $classPrefix ?>"><?= Html::encode($subTitle) ?></h2>
         </div>
 
@@ -62,7 +61,7 @@ $profileImageHeight = $container->getProfileImage()->height() - 10;
         <?php endif; ?>
 
         <?php if ($canEdit) : ?>
-            <?= $this->render('containerProfileImageMenu', [
+            <?= $this->render('@content/widgets/views/containerProfileImageMenu', [
                 'upload' => $bannerUpload,
                 'hasImage' => $container->getProfileBannerImage()->hasImage(),
                 'cropUrl' => $coverCropUrl,
@@ -88,7 +87,7 @@ $profileImageHeight = $container->getProfileImage()->height() - 10;
                 <?= $profileImageUpload->progress() ?>
             </div>
 
-            <?= $this->render('containerProfileImageMenu', [
+            <?= $this->render('@content/widgets/views/containerProfileImageMenu', [
                 'upload' => $profileImageUpload,
                 'hasImage' => $container->getProfileImage()->hasImage(),
                 'deleteUrl' => $imageDeleteUrl,
