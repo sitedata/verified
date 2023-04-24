@@ -2,6 +2,7 @@
 
 namespace humhub\modules\verified\widgets;
 
+use humhub\modules\ui\icon\widgets\Icon;
 use Yii;
 use yii\base\Widget;
 
@@ -18,7 +19,13 @@ class VerifiedIcon extends Widget
     // add a leading space
     public $leadingSpace = true;
     
-    public $verifiedIcon = '';
+    public $icon;
+    
+    public $color;
+        
+    public $verified;
+    
+    public $tooltip_message;
     
     public function init()
     {
@@ -29,20 +36,38 @@ class VerifiedIcon extends Widget
         
         if (in_array($this->container->guid, $verifiedUser))
         {
-            $this->verifiedIcon = Yii::$app->getModule('verified')->getUserIcon();
+            $this->verified = true;
+            $this->tooltip_message = Yii::t('VerifiedModule.base', 'Verified User');
             
         } elseif (in_array($this->container->guid, $verifiedSpace))
         {
-            $this->verifiedIcon = Yii::$app->getModule('verified')->getSpaceIcon();
-        }
-        
-        if ($this->leadingSpace && !empty($this->verifiedIcon)) {
-            $this->verifiedIcon = ' ' . $this->verifiedIcon;
+            $this->verified = true;
+            $this->tooltip_message = Yii::t('VerifiedModule.base', 'Verified Space');
+        } else {
+            $this->verified = false;
         }
     }
     
     public function run()
     {
-        return $this->verifiedIcon;
+        if (!$this->verified) {
+            return;
+        }
+        
+        if ($this->icon === null) {
+            $this->icon = Yii::$app->getModule('verified')->settings->get('icon');
+        }
+        
+        if ($this->color === null) {
+            $this->color = Yii::$app->getModule('verified')->settings->get('color'); 
+        }
+        
+        $verified_icon = Icon::get($this->icon, ['color' => $this->color, 'tooltip' => $this->tooltip_message]);
+        
+        if ($this->leadingSpace) {
+            $verified_icon = ' ' . $verified_icon;
+        }
+        
+        return $verified_icon;
     }
 }
