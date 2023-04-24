@@ -1,6 +1,7 @@
 Changelog
 =========
 ### (TBA)
+- Fix: Profile Image upload/edit
 - Enh: Fix maximum number of allowed accounts
 - Enh: add setting: maximum number of allowed spaces
 
