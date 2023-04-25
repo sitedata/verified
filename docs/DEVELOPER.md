@@ -1,7 +1,7 @@
-## For theme developers
+## For developers
 ### VerifiedIcon widget
 The module provides a widget which returns the verified icon (or an empty string).
-You can use it in your theme views as follows:
+You can use it in your theme or module views as follows:
 
 `<?= humhub\modules\verified\widgets\VerifiedIcon::widget(['container' => $user]); ?>`
 

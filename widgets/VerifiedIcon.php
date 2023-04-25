@@ -2,6 +2,7 @@
 
 namespace humhub\modules\verified\widgets;
 
+use humhub\modules\verified\models\ConfigureForm;
 use humhub\modules\ui\icon\widgets\Icon;
 use Yii;
 use yii\base\Widget;
@@ -35,7 +36,7 @@ class VerifiedIcon extends Widget
     
     protected $verified;
     
-    protected $tooltip_message;
+    protected $tooltip;
     
     public function init()
     {
@@ -46,12 +47,12 @@ class VerifiedIcon extends Widget
         if (in_array($this->container->guid, $module->getVerifyUser()))
         {
             $this->verified = true;
-            $this->tooltip_message = Yii::t('VerifiedModule.base', 'Verified User');
+            $this->tooltip = Yii::t('VerifiedModule.base', 'Verified User');
             
         } elseif (in_array($this->container->guid, $module->getVerifySpace()))
         {
             $this->verified = true;
-            $this->tooltip_message = Yii::t('VerifiedModule.base', 'Verified Space');
+            $this->tooltip = Yii::t('VerifiedModule.base', 'Verified Space');
             
         } else {
             $this->verified = false;
@@ -64,20 +65,22 @@ class VerifiedIcon extends Widget
             return;
         }
         
+        $module = Yii::$app->getModule('verified');
+        
         if ($this->icon === null) {
-            $this->icon = Yii::$app->getModule('verified')->settings->get('icon');
+            $this->icon = $module->settings->get('icon');
         }
         
         if ($this->color === null) {
-            $this->color = Yii::$app->getModule('verified')->settings->get('color'); 
+            $this->color = $module->settings->get('color'); 
         }
         
-        $verified_icon = Icon::get($this->icon, ['color' => $this->color, 'tooltip' => $this->tooltip_message]);
+        $verifiedIcon = Icon::get($this->icon, ['color' => $this->color, 'tooltip' => $this->tooltip]);
         
         if ($this->leadingSpace) {
-            $verified_icon = ' ' . $verified_icon;
+            $verifiedIcon = ' ' . $verifiedIcon;
         }
         
-        return $verified_icon;
+        return $verifiedIcon;
     }
 }
