@@ -4,6 +4,7 @@ Changelog
 - Fix: Profile Image upload/edit
 - Enh: Fix maximum number of allowed accounts
 - Enh: add setting: maximum number of allowed spaces
+- Enh: VerifiedIcon widget options
 
 ### 1.0.0-beta.3 (4/20/2023)
 - Enh: People and spaces page

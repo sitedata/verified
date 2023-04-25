@@ -2,6 +2,8 @@
 
 namespace humhub\modules\verified\widgets;
 
+use humhub\modules\verified\models\ConfigureForm;
+use humhub\modules\ui\icon\widgets\Icon;
 use Yii;
 use yii\base\Widget;
 
@@ -12,37 +14,73 @@ use yii\base\Widget;
 
 class VerifiedIcon extends Widget
 {	
-    // user or space
+    /**
+     * @var \humhub\modules\user\models\User OR \humhub\modules\space\models\Space
+     */
     public $container;
     
-    // add a leading space
+    /**
+     * @var string icon
+     */
+    public $icon;
+    
+    /**
+     * @var string color
+     */
+    public $color;
+    
+    /**
+     * @var boolean adds a leading space
+     */
     public $leadingSpace = true;
     
-    public $verifiedIcon = '';
+    protected $verified;
+    
+    protected $tooltip;
     
     public function init()
     {
         parent::init();
         
-        $verifiedUser = Yii::$app->getModule('verified')->getVerifyUser();
-        $verifiedSpace = Yii::$app->getModule('verified')->getVerifySpace();
+        $module = Yii::$app->getModule('verified');
         
-        if (in_array($this->container->guid, $verifiedUser))
+        if (in_array($this->container->guid, $module->getVerifyUser()))
         {
-            $this->verifiedIcon = Yii::$app->getModule('verified')->getUserIcon();
+            $this->verified = true;
+            $this->tooltip = Yii::t('VerifiedModule.base', 'Verified User');
             
-        } elseif (in_array($this->container->guid, $verifiedSpace))
+        } elseif (in_array($this->container->guid, $module->getVerifySpace()))
         {
-            $this->verifiedIcon = Yii::$app->getModule('verified')->getSpaceIcon();
-        }
-        
-        if ($this->leadingSpace && !empty($this->verifiedIcon)) {
-            $this->verifiedIcon = ' ' . $this->verifiedIcon;
+            $this->verified = true;
+            $this->tooltip = Yii::t('VerifiedModule.base', 'Verified Space');
+            
+        } else {
+            $this->verified = false;
         }
     }
     
     public function run()
     {
-        return $this->verifiedIcon;
+        if (!$this->verified) {
+            return;
+        }
+        
+        $module = Yii::$app->getModule('verified');
+        
+        if ($this->icon === null) {
+            $this->icon = $module->settings->get('icon');
+        }
+        
+        if ($this->color === null) {
+            $this->color = $module->settings->get('color'); 
+        }
+        
+        $verifiedIcon = Icon::get($this->icon, ['color' => $this->color, 'tooltip' => $this->tooltip]);
+        
+        if ($this->leadingSpace) {
+            $verifiedIcon = ' ' . $verifiedIcon;
+        }
+        
+        return $verifiedIcon;
     }
 }
