@@ -2,9 +2,12 @@
 
 namespace humhub\modules\verified\models;
 
+use humhub\modules\verified\notifications\UserVerified;
+use humhub\modules\verified\notifications\SpaceVerified;
 use Yii;
 use yii\web\BadRequestHttpException;
 use humhub\modules\user\models\User;
+use humhub\modules\space\models\Space;
 use humhub\components\ActiveRecord;
 use humhub\components\behaviors\PolymorphicRelation;
 
@@ -143,6 +146,9 @@ class ConfigureForm extends ActiveRecord
         $module = Yii::$app->getModule('verified');
         $settings = $module->settings;
 
+        $oldVerifyUsers = (array)$settings->getSerialized('verifyUser');
+        $oldVerifySpaces = (array)$settings->getSerialized('verifySpace');
+
         if(empty($this->color)) {
             $this->color = Yii::$app->getView()->theme->variable('default');
         }
@@ -154,6 +160,22 @@ class ConfigureForm extends ActiveRecord
         $settings->setSerialized('verifyUser', (array)$this->verifyUser);
         $settings->setSerialized('verifySpace', (array)$this->verifySpace);
 
+        //Send notification to new verified users
+        $newUsersGuid = array_diff((array)$this->verifyUser, $oldVerifyUsers);
+        $newUsers = array();
+        foreach($newUsersGuid as $guid) {
+            $newUsers[] = User::findOne(['guid' => $guid]);
+        }
+        Yii::createObject(['class' => UserVerified::class])->sendBulk($newUsers);
+        
+        //Send notification to owner of new verified spaces
+        $newSpacesGuid = array_diff((array)$this->verifySpace, $oldVerifySpaces);
+        foreach($newSpacesGuid as $guid) {
+			$space = Space::findOne(['guid' => $guid]);
+            $owner = $space->ownerUser;
+			Yii::createObject(['class' => SpaceVerified::class])->about($space)->send($owner);
+        }
+        
         return true;
     }
 
