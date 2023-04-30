@@ -142,6 +142,10 @@ class ConfigureForm extends ActiveRecord
 
     public function saveSettings()
     {
+        if(!$this->validate()) {
+            return false;
+        }
+        
         /** @var Module $module */
         $module = Yii::$app->getModule('verified');
         $settings = $module->settings;
