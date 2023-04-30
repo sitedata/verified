@@ -162,7 +162,7 @@ class ConfigureForm extends ActiveRecord
 
         //Send notification to new verified users
         $newUsersGuid = array_diff((array)$this->verifyUser, $oldVerifyUsers);
-        $newUsers = array();
+        $newUsers = [];
         foreach($newUsersGuid as $guid) {
             $newUsers[] = User::findOne(['guid' => $guid]);
         }
