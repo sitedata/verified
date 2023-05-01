@@ -23,6 +23,7 @@ use humhub\libs\Html;
             <?= $form->field($model, 'maxSpaces'); ?>
             <?= $form->field($model, 'icon')->widget(IconPicker::class); ?>
             <?= $form->field($model, 'color')->widget(ColorInput::class); ?>
+			<?= $form->field($model, 'sendNotifications')->checkbox(); ?>
         </div>
 
         <div class="form-group">
