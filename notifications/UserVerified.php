@@ -14,14 +14,6 @@ class UserVerified extends BaseNotification
      * @inheritdoc
      */
     public $moduleId = "verified";
-    /**
-     * @inheritdoc
-     */
-    public $requireOriginator = false;
-    /**
-     * @inheritdoc
-     */
-    public $requireSource = false;
     
     public function html()
     {

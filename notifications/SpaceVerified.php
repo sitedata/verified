@@ -15,10 +15,6 @@ class SpaceVerified extends BaseNotification
      * @inheritdoc
      */
     public $moduleId = "verified";
-    /**
-     * @inheritdoc
-     */
-    public $requireOriginator = false;
     
     public function html()
     {

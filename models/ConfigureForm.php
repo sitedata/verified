@@ -180,8 +180,15 @@ class ConfigureForm extends ActiveRecord
      */
     protected function notifyUsers($usersGuid)
     {
-        $newUsers = User::find()->where(['guid' => $usersGuid]);
-        Yii::createObject(['class' => UserVerified::class])->sendBulk($newUsers);
+        $originator = Yii::$app->user->getIdentity();
+        foreach((array)$usersGuid as $guid) {
+            if (empty($guid)) {
+                continue;
+            }
+		    $user = User::findOne(['guid' => $guid]);
+		    
+		    UserVerified::instance()->from($originator)->about($user)->send($user);
+        }
     }
     
     /*
@@ -189,13 +196,14 @@ class ConfigureForm extends ActiveRecord
      */
     protected function notifySpaces($spacesGuid)
     {
+        $originator = Yii::$app->user->getIdentity();
         foreach($spacesGuid as $guid) {
             if (empty($guid)) {
 				continue;
 			}
             $space = Space::findOne(['guid' => $guid]);
             $owner = $space->ownerUser;
-            Yii::createObject(['class' => SpaceVerified::class])->about($space)->send($owner);
+            SpaceVerified::instance()->from($originator)->about($space)->send($owner);
         }
     }
 
