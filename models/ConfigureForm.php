@@ -180,10 +180,7 @@ class ConfigureForm extends ActiveRecord
      */
     protected function notifyUsers($usersGuid)
     {
-        $newUsers = [];
-        foreach($usersGuid as $guid) {
-            $newUsers[] = User::findOne(['guid' => $guid]);
-        }
+        $newUsers = User::find()->where(['guid' => $usersGuid]);
         Yii::createObject(['class' => UserVerified::class])->sendBulk($newUsers);
     }
     
