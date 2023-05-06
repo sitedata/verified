@@ -3,6 +3,7 @@
 namespace humhub\modules\verified\notifications;
 
 use humhub\modules\notification\components\BaseNotification;
+use humhub\modules\verified\notifications\VerifiedNotificationCategory;
 use Yii;
 
 /**
@@ -15,6 +16,10 @@ class UserVerified extends BaseNotification
      */
     public $moduleId = "verified";
     
+    public function category()
+    {
+        return new VerifiedNotificationCategory();
+    }
     public function html()
     {
         return Yii::t('VerifiedModule.notifications', "Your account has been verified.");
