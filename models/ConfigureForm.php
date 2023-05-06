@@ -47,11 +47,6 @@ class ConfigureForm extends ActiveRecord
      * @inheritdoc
      */
     public $color;
-    
-    /**
-     * @inheritdoc
-     */
-    public $sendNotifications;
 
     /**
      * @inheritdoc
@@ -71,7 +66,6 @@ class ConfigureForm extends ActiveRecord
             [['verifyUser', 'verifySpace', 'icon'], 'safe'],
             ['color', 'string'],
             ['color', 'validateColor'],
-            ['sendNotifications', 'boolean']
         ];
     }
 
@@ -127,7 +121,6 @@ class ConfigureForm extends ActiveRecord
             'color' => Yii::t('VerifiedModule.base', 'Custom Icon color:'),
             'maxUsers' => Yii::t('VerifiedModule.base', 'Maximum number of verified users allowed:'),
             'maxSpaces' => Yii::t('VerifiedModule.base', 'Maximum number of verified spaces allowed:'),
-            'sendNotifications' => Yii::t('VerifiedModule.base', 'Notify new verified users and space owners.'),
         ];
     }
 
@@ -143,7 +136,6 @@ class ConfigureForm extends ActiveRecord
         $this->verifyUser = (array)$settings->getSerialized('verifyUser');
         $this->verifySpace = (array)$settings->getSerialized('verifySpace');
         $this->color = $settings->get('color', Yii::$app->getView()->theme->variable('primary'));
-        $this->sendNotifications = (bool)$settings->get('sendNotifications', true);
 
         return true;
     }
@@ -171,17 +163,15 @@ class ConfigureForm extends ActiveRecord
         $settings->set('maxSpaces', $this->maxSpaces);
         $settings->setSerialized('verifyUser', (array)$this->verifyUser);
         $settings->setSerialized('verifySpace', (array)$this->verifySpace);
-        $settings->set('sendNotifications', $this->sendNotifications);
 
-		if ($this->sendNotifications) {
-            // Send notification to new verified users
-            $newUsersGuid = array_diff((array)$this->verifyUser, $oldVerifyUsers);
-            self::notifyUsers($newUsersGuid);
-            
-            // Send notification for new verified spaces
-            $newSpacesGuid = array_diff((array)$this->verifySpace, $oldVerifySpaces);
-            self::notifySpaces($newSpacesGuid);
-		}
+        // Send notification to new verified users
+        $newUsersGuid = array_diff((array)$this->verifyUser, $oldVerifyUsers);
+        self::notifyUsers($newUsersGuid);
+        
+        // Send notification for new verified spaces
+        $newSpacesGuid = array_diff((array)$this->verifySpace, $oldVerifySpaces);
+        self::notifySpaces($newSpacesGuid);
+                
         return true;
     }
     
@@ -191,7 +181,7 @@ class ConfigureForm extends ActiveRecord
     protected function notifyUsers($usersGuid)
     {
         $originator = Yii::$app->user->getIdentity();
-        foreach($usersGuid as $guid) {
+        foreach((array)$usersGuid as $guid) {
             if (empty($guid)) {
                 continue;
             }
@@ -209,8 +199,8 @@ class ConfigureForm extends ActiveRecord
         $originator = Yii::$app->user->getIdentity();
         foreach($spacesGuid as $guid) {
             if (empty($guid)) {
-                continue;
-            }
+				continue;
+			}
             $space = Space::findOne(['guid' => $guid]);
             $owner = $space->ownerUser;
             SpaceVerified::instance()->from($originator)->about($space)->send($owner);
