@@ -2,9 +2,12 @@
 
 namespace humhub\modules\verified\models;
 
+use humhub\modules\verified\notifications\UserVerified;
+use humhub\modules\verified\notifications\SpaceVerified;
 use Yii;
 use yii\web\BadRequestHttpException;
 use humhub\modules\user\models\User;
+use humhub\modules\space\models\Space;
 use humhub\components\ActiveRecord;
 use humhub\components\behaviors\PolymorphicRelation;
 
@@ -139,9 +142,16 @@ class ConfigureForm extends ActiveRecord
 
     public function saveSettings()
     {
+        if(!$this->validate()) {
+            return false;
+        }
+        
         /** @var Module $module */
         $module = Yii::$app->getModule('verified');
         $settings = $module->settings;
+
+        $oldVerifyUsers = (array)$settings->getSerialized('verifyUser');
+        $oldVerifySpaces = (array)$settings->getSerialized('verifySpace');
 
         if(empty($this->color)) {
             $this->color = Yii::$app->getView()->theme->variable('default');
@@ -154,7 +164,47 @@ class ConfigureForm extends ActiveRecord
         $settings->setSerialized('verifyUser', (array)$this->verifyUser);
         $settings->setSerialized('verifySpace', (array)$this->verifySpace);
 
+        // Send notification to new verified users
+        $newUsersGuid = array_diff((array)$this->verifyUser, $oldVerifyUsers);
+        self::notifyUsers($newUsersGuid);
+        
+        // Send notification for new verified spaces
+        $newSpacesGuid = array_diff((array)$this->verifySpace, $oldVerifySpaces);
+        self::notifySpaces($newSpacesGuid);
+                
         return true;
+    }
+    
+    /*
+     * Notifies users that their account has been verified.
+     */
+    protected function notifyUsers($usersGuid)
+    {
+        $originator = Yii::$app->user->getIdentity();
+        foreach((array)$usersGuid as $guid) {
+            if (empty($guid)) {
+                continue;
+            }
+		    $user = User::findOne(['guid' => $guid]);
+		    
+		    UserVerified::instance()->from($originator)->about($user)->send($user);
+        }
+    }
+    
+    /*
+     * Notifies space owners that their space has been verified.
+     */
+    protected function notifySpaces($spacesGuid)
+    {
+        $originator = Yii::$app->user->getIdentity();
+        foreach($spacesGuid as $guid) {
+            if (empty($guid)) {
+				continue;
+			}
+            $space = Space::findOne(['guid' => $guid]);
+            $owner = $space->ownerUser;
+            SpaceVerified::instance()->from($originator)->about($space)->send($owner);
+        }
     }
 
     /**
