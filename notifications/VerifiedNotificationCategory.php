@@ -18,4 +18,14 @@ class VerifiedNotificationCategory extends NotificationCategory
     {
         return Yii::t('VerifiedModule.notifications', 'Receive Notifications when your account or one of your spaces is verified.');
     }
+    
+    public function isVisible(User $user = null)
+    {
+        if ($user == null) {
+            // Show in admin section
+            return true;
+        }
+        // Hide in account settings
+        return false;
+    }
 }
