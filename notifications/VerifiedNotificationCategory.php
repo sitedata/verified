@@ -4,6 +4,7 @@ namespace humhub\modules\verified\notifications;
 
 use Yii;
 use humhub\modules\notification\components\NotificationCategory;
+use humhub\modules\user\models\User;
 
 class VerifiedNotificationCategory extends NotificationCategory
 {
