@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this \humhub\modules\ui\view\components\View */
-/* @var $model \humhub\modules\verified\models\RequestBadge[] */
+/* @var $model \humhub\modules\verified\models\PaymentOptions[] */
 
 use humhub\modules\ui\icon\widgets\Icon;
 use humhub\widgets\Button;
