@@ -19,7 +19,7 @@ if(!isset($model)) {
 <div class="modal-body">
 
     <?= Html::beginTag('div') ?>
-    <script src="https://www.paypal.com/sdk/js?client-id=<?= Yii::$app->getModule('verified')->settings->get('clientId'); ?>&enable-funding=venmo&components=buttons,funding-eligibility"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=<?= Yii::$app->getModule('verified')->settings->get('paypalId'); ?>&enable-funding=venmo&components=buttons,funding-eligibility"></script>
     <div id="paypal-button-container">
     <script>
         // Loop over each funding source
