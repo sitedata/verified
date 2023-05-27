@@ -14,13 +14,18 @@ class RequestBadge extends Model
     public $paypalId;
 
     /**
+     * @var string
+     */
+    public $planId;
+
+    /**
      * @inheritDoc
      */
     public function rules()
     {
         return [
-            [['paypalId'], 'required'],
-            [['paypalId'], 'string'],
+            [['paypalId', 'planId'], 'required'],
+            [['paypalId', 'planId'], 'string'],
         ];
     }
 
@@ -31,6 +36,7 @@ class RequestBadge extends Model
     {
         return [
             'paypalId' => Yii::t('VerifiedModule.base', 'PayPal Client ID:'),
+            'planId' => Yii::t('VerifiedModule.base', 'PayPal Plan ID:'),
         ];
     }
 
@@ -41,6 +47,7 @@ class RequestBadge extends Model
         $settings = $module->settings;
 
         $this->paypalId = $settings->get('paypalId');
+        $this->planId = $settings->get('planId');
 
         return true;
     }
@@ -52,6 +59,7 @@ class RequestBadge extends Model
         $settings = $module->settings;
 
         $settings->set('paypalId', $this->paypalId);
+        $settings->set('planId', $this->planId);
 
         return true;
     }
