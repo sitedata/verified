@@ -28,7 +28,7 @@ use humhub\libs\Html;
     		createSubscription: function(data, actions) {
     			return actions.subscription.create({
     				/* Creates the subscription */
-    				plan_id: '<?= Yii::$app->getModule('verified ')->settings->get('planId '); ?>'
+    				plan_id: '<?= Yii::$app->getModule('verified')->settings->get('planId'); ?>'
     			});
     		},
     		onApprove: function(data, actions) {
