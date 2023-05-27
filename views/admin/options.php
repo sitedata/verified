@@ -9,15 +9,15 @@ use humhub\modules\ui\form\widgets\ActiveForm;
 use humhub\libs\Html;
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
         <?= Button::asLink(Icon::get('cog'))
-            ->link(['index'])
-            ->cssClass('pull-right btn btn-default')
-            ->tooltip(Yii::t('AdminModule.base', 'Settings')) ?>
+        ->link(['index'])
+        ->cssClass('pull-right btn btn-default')
+        ->tooltip(Yii::t('AdminModule.base', 'Settings')) ?>
 
-        <?= Yii::t('VerifiedModule.base', '<strong>Payment</strong> Clients') ?>
-    </div>
+    <?= Yii::t('VerifiedModule.base', '<strong>Payment</strong> Clients') ?></div>
     <div class="panel-body">
         <p>
             <?= Html::a(Yii::t('VerifiedModule.base', 'PayPal Documentation'), 'https://developer.paypal.com/dashboard/applications/live/', ['class' => 'btn btn-primary pull-right btn-sm', 'target' => '_blank']); ?>
@@ -35,5 +35,6 @@ use humhub\libs\Html;
             <?= Html::submitButton(\Yii::t('VerifiedModule.base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']); ?>
         </div>
         <?php ActiveForm::end(); ?>
+    </div>
     </div>
 </div>
