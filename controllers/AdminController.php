@@ -4,8 +4,17 @@ namespace humhub\modules\verified\controllers;
 
 use humhub\modules\admin\components\Controller;
 use humhub\modules\verified\models\ConfigureForm;
+use humhub\modules\verified\models\RequestBadge;
+use humhub\modules\verified\models\RequestSearch;
+use humhub\modules\verified\Module;
 use Yii;
+use yii\data\Pagination;
 
+/**
+ * AdminController
+ *
+ * @property Module $module
+ */
 class AdminController extends Controller
 {
 
@@ -21,8 +30,16 @@ class AdminController extends Controller
         return $this->render('index', ['model' => $model]);
     }
 
-    public function actionHelp()
+    public function actionRequests()
     {
-        return $this->render('help', []);
+
+        $model = new RequestBadge();
+        $model->loadSettings();
+
+        if ($model->load(Yii::$app->request->post()) && $model->saveSettings()) {
+            $this->view->saved();
+        }
+
+        return $this->render('requests', ['model' => $model]);
     }
 }
