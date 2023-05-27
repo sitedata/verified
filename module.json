@@ -2,7 +2,7 @@
     "id": "verified",
     "version": "1.0.0",
     "name": "Verified",
-    "description": "Verified Accounts.",
+    "description": "Verified Accounts/Spaces.",
     "humhub": {
         "minVersion": "1.15"
     },
