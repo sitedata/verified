@@ -5,9 +5,9 @@ namespace humhub\modules\verified\controllers;
 use Yii;
 use humhub\widgets\ModalClose;
 use humhub\modules\user\components\BaseAccountController;
-use humhub\modules\verified\models\RequestBadge;
+use humhub\modules\verified\models\PaymentOptions;
 
-class RequestController extends BaseAccountController
+class OptionsController extends BaseAccountController
 {
 
     /**
@@ -16,7 +16,7 @@ class RequestController extends BaseAccountController
     public function actionIndex()
     {
 
-        $model = new RequestBadge();
+        $model = new PaymentOptions();
         $model->loadSettings();
 
         if ($model->load(Yii::$app->request->post()) && $model->saveSettings()) {
