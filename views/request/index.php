@@ -12,7 +12,8 @@ use humhub\libs\Html;
 <?php ModalDialog::begin(['header' => Yii::t('VerifiedModule.base', '<strong>Verification</strong> Payment Options')]); ?>
 <?php $form = ActiveForm::begin();?>
 <div class="modal-body">
-
+    <?= Yii::t('VerifiedModule.base', 'Welcome to ' . Yii::$app->name . ' verification center, once we confirm the payment you will receive a notification stating that your account has been verified.') ?>
+    <hr>
     <?= Html::beginTag('div') ?>
     <script src="https://www.paypal.com/sdk/js?client-id=<?= Yii::$app->getModule('verified')->settings->get('paypalId'); ?>&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
     <div id="paypal-button-container"></div>
