@@ -7,7 +7,7 @@ Changelog
 - Enh: VerifiedIcon widget options
 - Enh: Send notifications
 - Enh: Subscription Payments
-- Chg: `minVersion` to v1.15
+- Chg: `minVersion` to v1.14
 - Fix: Admin settings bug
 
 ### 1.0.0-beta.3 (4/20/2023)
