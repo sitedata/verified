@@ -61,7 +61,7 @@ class Module extends \humhub\components\Module
      */
     public function getConfigUrl()
     {
-        return helpers\Url::ROUTE_ADMIN;
+        return helpers\Url::getConfigUrl();
     }
 
     /**
