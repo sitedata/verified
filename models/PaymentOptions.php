@@ -5,7 +5,7 @@ namespace humhub\modules\verified\models;
 use Yii;
 use yii\base\Model;
 
-class RequestBadge extends Model
+class PaymentOptions extends Model
 {
 
     /**
