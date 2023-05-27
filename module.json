@@ -4,7 +4,7 @@
     "name": "Verified",
     "description": "Verified Accounts/Spaces.",
     "humhub": {
-        "minVersion": "1.15"
+        "minVersion": "1.14"
     },
     "keywords": ["verification", "tick"],
     "screenshots": ["resources/Screenshot_1.png", "resources/Screenshot_2.png", "resources/Screenshot_3.png", "resources/Screenshot_4.png"],
