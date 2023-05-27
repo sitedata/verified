@@ -40,6 +40,6 @@ class AdminController extends Controller
             $this->view->saved();
         }
 
-        return $this->render('requests', ['model' => $model]);
+        return $this->render('options', ['model' => $model]);
     }
 }
