@@ -28,6 +28,7 @@ use humhub\libs\Html;
         <?php $form = ActiveForm::begin(['id' => 'configure-form']); ?>
         <div class="form-group">
             <?= $form->field($model, 'paypalId')->textInput(['type' => 'password']); ?>
+            <?= $form->field($model, 'planId')->textInput(['type' => 'password']); ?>
         </div>
 
         <div class="form-group">
