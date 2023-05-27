@@ -5,7 +5,7 @@ use humhub\widgets\ModalButton;
 use humhub\widgets\ModalDialog;
 use humhub\libs\Html;
 
-/** @var $model \humhub\modules\verified\models\RequestBadge */
+/** @var $model \humhub\modules\verified\models\PaymentOptions[] */
 
 ?>
 
