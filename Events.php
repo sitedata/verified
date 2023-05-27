@@ -42,7 +42,7 @@ class Events
 	    $menu = $event->sender;
 
 	    $menu->addEntry(new MenuLink([
-	        'icon' => 'fa-exclamation-circle',
+	        'icon' => 'fa-check-circle',
 	        'label' => Yii::t('VerifiedModule.base', 'Verification Request'),
 	        'url' => '#',
 	        'htmlOptions' => [
@@ -50,7 +50,6 @@ class Events
 	            'data-action-click-url' => helpers\Url::getOptionsUrl()
 	       ],
 	        'sortOrder' => 1000,
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id === 'verified' || Yii::$app->controller->id === 'index')
         ]));
     }
 }
