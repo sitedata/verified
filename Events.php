@@ -4,7 +4,6 @@ namespace humhub\modules\verified;
 
 use Yii;
 use humhub\modules\verified\widgets\VerifiedProfileHeader;
-use humhub\modules\verified\widgets\VerifiedUserWall;
 use humhub\modules\verified\widgets\VerifiedPeopleCard;
 use humhub\modules\verified\widgets\VerifiedSpaceCard;
 use humhub\modules\verified\widgets\VerifiedComment;
@@ -48,7 +47,7 @@ class Events
 	        'url' => '#',
 	        'htmlOptions' => [
 	            'data-action-click' => 'ui.modal.load',
-	            'data-action-click-url' => helpers\Url::getRequestUrl()
+	            'data-action-click-url' => helpers\Url::getOptionsUrl()
 	       ],
 	        'sortOrder' => 1000,
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id === 'verified' || Yii::$app->controller->id === 'index')
