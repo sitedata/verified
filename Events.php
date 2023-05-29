@@ -40,16 +40,23 @@ class Events
 	public static function onAccountMenuInit($event)
 	{
 	    $menu = $event->sender;
+	    $enabled = models\PaymentOptions::getInstance()->enabled;
 
+        if (!empty($enabled)) {
 	    $menu->addEntry(new MenuLink([
 	        'icon' => 'fa-check-circle',
-	        'label' => Yii::t('VerifiedModule.base', 'Verification Request'),
+	        'label' => Yii::t('VerifiedModule.base', 'Verification Center'),
 	        'url' => '#',
 	        'htmlOptions' => [
 	            'data-action-click' => 'ui.modal.load',
-	            'data-action-click-url' => helpers\Url::getOptionsUrl()
+	            'data-action-click-url' => helpers\Url::getOptionsUrl(),
+	            'data-pjax-prevent' => ''
 	       ],
 	        'sortOrder' => 1000,
         ]));
+
+        }
+        return $enabled;
+
     }
 }
