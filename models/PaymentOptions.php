@@ -42,7 +42,7 @@ class PaymentOptions extends Model
         return [
             'paypalId' => Yii::t('VerifiedModule.base', 'PayPal Client ID:'),
             'planId' => Yii::t('VerifiedModule.base', 'PayPal Plan ID:'),
-            'enabled' => Yii::t('VerifiedModule.base', 'Enable/Disable'),
+            'enabled' => Yii::t('VerifiedModule.base', 'Enable'),
         ];
     }
 
