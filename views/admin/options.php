@@ -27,6 +27,7 @@ use humhub\libs\Html;
         <br/>
         <?php $form = ActiveForm::begin(['id' => 'configure-form']); ?>
         <div class="form-group">
+            <?= $form->field($model, 'enabled')->checkbox(); ?>
             <?= $form->field($model, 'paypalId')->textInput(['type' => 'password']); ?>
             <?= $form->field($model, 'planId')->textInput(['type' => 'password']); ?>
         </div>
