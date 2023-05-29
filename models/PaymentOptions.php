@@ -7,6 +7,10 @@ use yii\base\Model;
 
 class PaymentOptions extends Model
 {
+    /**
+     * @var bool
+     */
+    public $enabled;
 
     /**
      * @var string
@@ -26,6 +30,7 @@ class PaymentOptions extends Model
         return [
             [['paypalId', 'planId'], 'required'],
             [['paypalId', 'planId'], 'string'],
+            [['enabled'], 'boolean']
         ];
     }
 
@@ -37,6 +42,7 @@ class PaymentOptions extends Model
         return [
             'paypalId' => Yii::t('VerifiedModule.base', 'PayPal Client ID:'),
             'planId' => Yii::t('VerifiedModule.base', 'PayPal Plan ID:'),
+            'enabled' => Yii::t('VerifiedModule.base', 'Enable/Disable'),
         ];
     }
 
@@ -48,6 +54,7 @@ class PaymentOptions extends Model
 
         $this->paypalId = $settings->get('paypalId');
         $this->planId = $settings->get('planId');
+        $this->enabled = (boolean)$settings->get('enabled');
 
         return true;
     }
@@ -60,7 +67,19 @@ class PaymentOptions extends Model
 
         $settings->set('paypalId', $this->paypalId);
         $settings->set('planId', $this->planId);
+        $settings->set('enabled', (boolean)$this->enabled);
 
         return true;
+    }
+
+    /**
+     * Returns a loaded instance of this configuration model
+     */
+    public static function getInstance()
+    {
+        $config = new static;
+        $config->loadSettings();
+
+        return $config;
     }
 }
