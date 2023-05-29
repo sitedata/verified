@@ -9,13 +9,12 @@ use humhub\modules\ui\form\widgets\ActiveForm;
 use humhub\libs\Html;
 
 ?>
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-        <?= Button::asLink(Icon::get('cog'))
-        ->link(['index'])
-        ->cssClass('pull-right btn btn-default')
-        ->tooltip(Yii::t('AdminModule.base', 'Settings')) ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+    <?= Button::asLink(Icon::get('cog'))
+    ->link(['index'])
+    ->cssClass('pull-right btn btn-default')
+    ->tooltip(Yii::t('AdminModule.base', 'Settings')) ?>
 
     <?= Yii::t('VerifiedModule.base', '<strong>Payment</strong> Clients') ?></div>
     <div class="panel-body">
@@ -36,6 +35,5 @@ use humhub\libs\Html;
             <?= Html::submitButton(\Yii::t('VerifiedModule.base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']); ?>
         </div>
         <?php ActiveForm::end(); ?>
-    </div>
     </div>
 </div>
