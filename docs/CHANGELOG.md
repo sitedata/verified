@@ -6,9 +6,10 @@ Changelog
 - Enh: add setting: maximum number of allowed spaces
 - Enh: VerifiedIcon widget options
 - Enh: Send notifications
-- Enh: Subscription Payments
+- Enh: Optional Subscription Payments
 - Chg: `minVersion` to v1.14
 - Fix: Admin settings bug
+- Enh: Add `enabled` settings
 
 ### 1.0.0-beta.3 (4/20/2023)
 - Enh: People and spaces page
