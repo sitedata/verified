@@ -7,7 +7,7 @@ use humhub\widgets\ModalClose;
 use humhub\modules\user\components\BaseAccountController;
 use humhub\modules\verified\models\PaymentOptions;
 
-class OptionsController extends BaseAccountController
+class PaymentController extends BaseAccountController
 {
 
     /**
