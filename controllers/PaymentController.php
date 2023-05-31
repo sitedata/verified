@@ -3,7 +3,6 @@
 namespace humhub\modules\verified\controllers;
 
 use Yii;
-use humhub\widgets\ModalClose;
 use humhub\modules\user\components\BaseAccountController;
 use humhub\modules\verified\models\PaymentOptions;
 
@@ -17,12 +16,7 @@ class PaymentController extends BaseAccountController
     {
 
         $model = new PaymentOptions();
-        $model->loadSettings();
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveSettings()) {
-            return ModalClose::widget();
-
-        }
         return $this->renderAjax('index', ['model' => $model]);
     }
 }
