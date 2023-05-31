@@ -1,6 +1,6 @@
-# [HumHub](https://www.humhub.com/en) Verified Accounts
+# [HumHub](https://www.humhub.com/en) Verified Accounts/Spaces
 
-Verify your HumHub users and spaces with a verified tick on their profiles.
+Verify your HumHub users and spaces with a verification tick on their profiles.
 
 ### Credits
 [Green Meteor](https://github.com/GreenMeteor)

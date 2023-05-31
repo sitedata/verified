@@ -1,13 +1,13 @@
 {
     "id": "verified",
-    "version": "1.0.0-beta.3",
+    "version": "1.0.0",
     "name": "Verified",
-    "description": "Verified Accounts.",
+    "description": "Verified Accounts/Spaces.",
     "humhub": {
-        "minVersion": "1.12"
+        "minVersion": "1.14"
     },
     "keywords": ["verification", "tick"],
-    "screenshots": ["resources/Screenshot_1.png", "resources/Screenshot_2.png"],
+    "screenshots": ["resources/Screenshot_1.png", "resources/Screenshot_2.png", "resources/Screenshot_3.png", "resources/Screenshot_4.png"],
     "homepage": "https://github.com/GreenMeteor/verified",
     "issues": "https://github.com/GreenMeteor/verified/issues",
     "authors": [
