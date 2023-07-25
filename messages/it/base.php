@@ -4,7 +4,7 @@ return [
     'Custom Icon color:' => '',
     'Custom Icon used:' => '',
     'Invalid color!' => '',
-    'Maximum number of verified allowed:' => '',
+    'Maximum number of verified allowed:' => 'Numero massimo di verificati consentiti',
     'Verified' => 'Verificato',
     'Verified Space' => 'Spazio Verificato',
     'Verified User' => 'Utente Verificato',
